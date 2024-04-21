@@ -77,3 +77,18 @@ class BST:
 
 
 # Imagine that we want to prioritize the social media posts by the number of views, and we want to be able to retrieve the post with the most views. What data structure would you use? Why? Implement your solution.
+import heapq
+
+class PostManager:
+    def __init__(self):
+        self.posts = []
+
+    def add_post_with_views(self, post, views):
+        heapq.heappush(self.posts, (-views, post))
+
+    def get_most_viewed_post(self):
+        most_viewed_post = self.posts[0][1] if self.posts else None
+        if most_viewed_post:
+            return most_viewed_post
+        else:
+            return "No posts available."
