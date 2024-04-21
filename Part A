@@ -74,3 +74,6 @@ class BST:
             self._find_posts_in_range_recursive(node.left, start_datetime, end_datetime, result)
         if end_datetime > node.datetime:
             self._find_posts_in_range_recursive(node.right, start_datetime, end_datetime, result)
+
+
+# Imagine that we want to prioritize the social media posts by the number of views, and we want to be able to retrieve the post with the most views. What data structure would you use? Why? Implement your solution.
