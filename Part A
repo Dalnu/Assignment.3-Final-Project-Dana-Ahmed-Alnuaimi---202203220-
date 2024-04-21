@@ -30,4 +30,47 @@ class HashTable:
 
 
 # If you need to find posts in a specific time range (e.g., start datetime, end datetime), what data structure would you use? Why? Implement your solution.
+class TreeNode:
+    def __init__(self, datetime, post):
+        self.datetime = datetime
+        self.post = post
+        self.left = None
+        self.right = None
 
+class BST:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, datetime, post):
+        if not self.root:
+            self.root = TreeNode(datetime, post)
+        else:
+            self._insert_recursive(self.root, datetime, post)
+
+    def _insert_recursive(self, node, datetime, post):
+        if datetime < node.datetime:
+            if node.left:
+                self._insert_recursive(node.left, datetime, post)
+            else:
+                node.left = TreeNode(datetime, post)
+        else:
+            if node.right:
+                self._insert_recursive(node.right, datetime, post)
+            else:
+                node.right = TreeNode(datetime, post)
+
+    def find_posts_in_range(self, start_datetime, end_datetime):
+        result = []
+        if self.root:
+            self._find_posts_in_range_recursive(self.root, start_datetime, end_datetime, result)
+        return result
+
+    def _find_posts_in_range_recursive(self, node, start_datetime, end_datetime, result):
+        if not node:
+            return
+        if start_datetime <= node.datetime <= end_datetime:
+            result.append(node.post)
+        if start_datetime < node.datetime:
+            self._find_posts_in_range_recursive(node.left, start_datetime, end_datetime, result)
+        if end_datetime > node.datetime:
+            self._find_posts_in_range_recursive(node.right, start_datetime, end_datetime, result)
