@@ -27,3 +27,7 @@ class HashTable:
             if existing_key == key:
                 return value
         return None
+
+
+# If you need to find posts in a specific time range (e.g., start datetime, end datetime), what data structure would you use? Why? Implement your solution.
+
