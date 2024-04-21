@@ -1,3 +1,4 @@
+# If you need to find a post by its unique datetime value, what data structure would you use? Implement your solution.
 class HashTable:
     def __init__(self):
         self.size = 1000  # Adjust the size based on the expected number of posts
