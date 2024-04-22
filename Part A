@@ -42,6 +42,7 @@ print(hash_table.get("2024-04-22 12:30:00"))  # Output: Post 2
 print(hash_table.get("2024-04-22 15:45:00"))  # Output: Post 3
 
 
+# __________________________________________________________________________________________________________________________________________________________________________________________________
 
 # 2. If you need to find posts in a specific time range (e.g., start datetime, end datetime), what data structure would you use? Why? Implement your solution.
 class TreeNode:
@@ -100,6 +101,9 @@ bst.insert("2024-04-22 15:45:00", "Post 3")
 # Finding posts within a time range
 print(bst.find_posts_in_range("2024-04-22 11:00:00", "2024-04-22 14:00:00"))  # Output: ['Post 2']
 
+
+
+# __________________________________________________________________________________________________________________________________________________________________________________________________
 
 # 3. Imagine that we want to prioritize the social media posts by the number of views, and we want to be able to retrieve the post with the most views. What data structure would you use? Why? Implement your solution.
 import heapq
