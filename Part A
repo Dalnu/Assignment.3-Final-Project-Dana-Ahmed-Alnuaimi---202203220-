@@ -89,6 +89,17 @@ class BST:
         if end_datetime > node.datetime:
             self._find_posts_in_range_recursive(node.right, start_datetime, end_datetime, result)
 
+# Test cases for finding posts in a specific time range using Binary Search Tree
+bst = BST()
+
+# Inserting posts with datetime values
+bst.insert("2024-04-22 10:00:00", "Post 1")
+bst.insert("2024-04-22 12:30:00", "Post 2")
+bst.insert("2024-04-22 15:45:00", "Post 3")
+
+# Finding posts within a time range
+print(bst.find_posts_in_range("2024-04-22 11:00:00", "2024-04-22 14:00:00"))  # Output: ['Post 2']
+
 
 # Imagine that we want to prioritize the social media posts by the number of views, and we want to be able to retrieve the post with the most views. What data structure would you use? Why? Implement your solution.
 import heapq
