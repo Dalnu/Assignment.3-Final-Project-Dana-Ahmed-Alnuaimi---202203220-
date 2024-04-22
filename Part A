@@ -1,4 +1,4 @@
-# If you need to find a post by its unique datetime value, what data structure would you use? Implement your solution.
+# 1. If you need to find a post by its unique datetime value, what data structure would you use? Implement your solution.
 class HashTable:
     def __init__(self):
         self.size = 1000  # Adjust the size based on the expected number of posts
@@ -28,8 +28,22 @@ class HashTable:
                 return value
         return None
 
+# Test cases for finding a post by unique datetime value using Hash Table
+hash_table = HashTable()
 
-# If you need to find posts in a specific time range (e.g., start datetime, end datetime), what data structure would you use? Why? Implement your solution.
+# Inserting posts with unique datetime values
+hash_table.insert("2024-04-22 10:00:00", "Post 1")
+hash_table.insert("2024-04-22 12:30:00", "Post 2")
+hash_table.insert("2024-04-22 15:45:00", "Post 3")
+
+# Retrieving posts by their datetime values
+print(hash_table.get("2024-04-22 10:00:00"))  # Output: Post 1
+print(hash_table.get("2024-04-22 12:30:00"))  # Output: Post 2
+print(hash_table.get("2024-04-22 15:45:00"))  # Output: Post 3
+
+
+
+# 2. If you need to find posts in a specific time range (e.g., start datetime, end datetime), what data structure would you use? Why? Implement your solution.
 class TreeNode:
     def __init__(self, datetime, post):
         self.datetime = datetime
