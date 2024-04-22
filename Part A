@@ -101,7 +101,7 @@ bst.insert("2024-04-22 15:45:00", "Post 3")
 print(bst.find_posts_in_range("2024-04-22 11:00:00", "2024-04-22 14:00:00"))  # Output: ['Post 2']
 
 
-# Imagine that we want to prioritize the social media posts by the number of views, and we want to be able to retrieve the post with the most views. What data structure would you use? Why? Implement your solution.
+# 3. Imagine that we want to prioritize the social media posts by the number of views, and we want to be able to retrieve the post with the most views. What data structure would you use? Why? Implement your solution.
 import heapq
 
 class PostManager:
