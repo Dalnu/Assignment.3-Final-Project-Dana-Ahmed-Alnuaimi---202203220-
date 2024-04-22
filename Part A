@@ -126,9 +126,9 @@ class PostManager:
 post_manager = PostManager()
 
 # Adding posts with views
-post_manager.add_post_with_views("Post 1", 10)
-post_manager.add_post_with_views("Post 2", 20)
-post_manager.add_post_with_views("Post 3", 15)
+post_manager.add_post_with_views("Post 1", 3456789)
+post_manager.add_post_with_views("Post 2", 876626)
+post_manager.add_post_with_views("Post 3", 6275395)
 
 # Retrieving the most viewed post
 print(post_manager.get_most_viewed_post())  # Output: Post 2
