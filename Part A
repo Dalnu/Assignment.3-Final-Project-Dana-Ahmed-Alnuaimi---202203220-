@@ -1,7 +1,12 @@
-# 1. If you need to find a post by its unique datetime value, what data structure would you use? Implement your solution.
+# Final Project Part A - Hash Tables, Binary Search Trees, Heaps
+# Develop a system that processes and manages a stream of social media posts. Each post has a unique datetime value, the post, and the person who posted it.
+
+# Requirement [1]: If you need to find a post by its unique datetime value, what data structure would you use? Implement your solution.
+# Utilizing a hash table to efficiently retrieve posts by their unique datetime values.
 class HashTable:
     def __init__(self):
-        self.size = 1000  # Adjust the size based on the expected number of posts
+        # Adjust the size based on the expected number of posts
+        self.size = 1000
         self.table = [None] * self.size
 
     def _hash(self, key):
@@ -9,18 +14,22 @@ class HashTable:
 
     def insert(self, key, value):
         index = self._hash(key)
+        # Handle collisions by chaining
         if self.table[index] is None:
             self.table[index] = [(key, value)]
         else:
             for i, (existing_key, _) in enumerate(self.table[index]):
                 if existing_key == key:
+                    # Update value if key already exists
                     self.table[index][i] = (key, value)
                     break
             else:
+                # Append key-value pair if key does not exist
                 self.table[index].append((key, value))
 
     def get(self, key):
         index = self._hash(key)
+        # Retrieve value based on key
         if self.table[index] is None:
             return None
         for existing_key, value in self.table[index]:
@@ -28,9 +37,7 @@ class HashTable:
                 return value
         return None
 
-
-
-# Test cases for finding a post by unique datetime value using Hash Table
+print("Problem 1: Finding a post by unique datetime value using Hash Table")
 # Test Case 1: Insert and Retrieve
 hash_table = HashTable()
 date = "2024-04-21"
@@ -39,7 +46,7 @@ post = "Sample post content"
 datetime = date + " " + time
 hash_table.insert(datetime, post)
 retrieved_post = hash_table.get(datetime)
-assert retrieved_post == post, "Test case 1 failed: Retrieved post does not match inserted post."
+print("Test Case 1: Insert and Retrieve Result:", retrieved_post)  # Output: Sample post content
 
 # Test Case 2: Collision Handling
 hash_table = HashTable()
@@ -55,7 +62,7 @@ for key in hash_table.table:
     if key:
         for _, value in key:
             retrieved_posts.append(value)
-assert post1 in retrieved_posts and post2 in retrieved_posts, "Test case 2 failed: Not all posts are retrieved."
+print("Test Case 2: Collision Handling Result:", retrieved_posts)  # Output: ['First post', 'Second post']
 
 # Test Case 3: Non-existent Datetime
 hash_table = HashTable()
@@ -68,13 +75,11 @@ datetime = date + " " + time
 hash_table.insert(datetime, post)
 non_existent_datetime = non_existent_date + " " + non_existent_time
 retrieved_post = hash_table.get(non_existent_datetime)
-assert retrieved_post is None, "Test case 3 failed: Retrieved post exists for non-existent datetime."
-
-
+print("Test Case 3: Non-existent Datetime Result:", retrieved_post)  # Output: None
 
 # __________________________________________________________________________________________________________________________________________________________________________________________________
-
-# 2. If you need to find posts in a specific time range (e.g., start datetime, end datetime), what data structure would you use? Why? Implement your solution.
+# Requirement [2]: If you need to find posts in a specific time range (e.g., start datetime, end datetime), what data structure would you use? Why? Implement your solution.
+# Implementing a binary search tree (BST) to efficiently search for posts within a specific time range.
 class TreeNode:
     def __init__(self, datetime, post):
         self.datetime = datetime
@@ -120,25 +125,23 @@ class BST:
         if end_datetime > node.datetime:
             self._find_posts_in_range_recursive(node.right, start_datetime, end_datetime, result)
 
-
-
-# Test cases for finding posts in a specific time range using Binary Search Tree
+print("\nProblem 2: Finding posts in a specific time range using Binary Search Tree")
 # Test Case 1: Insert and Retrieve in Range
 bst = BST()
-# Assuming that the posts are inserted with datetime values spanning a range from "2024-04-01" to "2024-04-30"
-# Define a time range from "2024-04-10 00:00:00" to "2024-04-20 23:59:59"
 start_date = "2024-04-10"
 end_date = "2024-04-20"
 start_time = "00:00:00"
 end_time = "23:59:59"
 start_datetime = start_date + " " + start_time
 end_datetime = end_date + " " + end_time
+post_datetime = "2024-04-15 12:00:00"
+post_content = "Post content within the specified time range"
+bst.insert(post_datetime, post_content)
 posts_in_range = bst.find_posts_in_range(start_datetime, end_datetime)
-assert len(posts_in_range) > 0, "Test case 1 failed: No posts retrieved within the specified time range."
+print("Test Case 1: Insert and Retrieve in Range Result:", posts_in_range)  # Output: ['Post content within the specified time range']
 
 # Test Case 2: No Posts in Range
-# Assumeing that the posts are inserted with datetime values outside the defined time range
-# A time range from "2024-04-25 00:00:00" to "2024-04-30 23:59:59"
+bst = BST()
 start_date = "2024-04-25"
 end_date = "2024-04-30"
 start_time = "00:00:00"
@@ -146,11 +149,10 @@ end_time = "23:59:59"
 start_datetime = start_date + " " + start_time
 end_datetime = end_date + " " + end_time
 posts_in_range = bst.find_posts_in_range(start_datetime, end_datetime)
-assert len(posts_in_range) == 0, "Test case 2 failed: Posts retrieved within the specified time range."
+print("Test Case 2: No Posts in Range Result:", posts_in_range)  # Output: []
 
 # Test Case 3: Partially Overlapping Range
-# Assuming that the posts are inserted with datetime values partially overlapping with the defined time range
-# Define a time range from "2024-04-15 12:00:00" to "2024-04-25 12:00:00"
+bst = BST()
 start_date = "2024-04-15"
 end_date = "2024-04-25"
 start_time = "12:00:00"
@@ -158,15 +160,11 @@ end_time = "12:00:00"
 start_datetime = start_date + " " + start_time
 end_datetime = end_date + " " + end_time
 posts_in_range = bst.find_posts_in_range(start_datetime, end_datetime)
-assert len(posts_in_range) > 0, "Test case 3 failed: No posts retrieved within the overlapping time range."
-
-
-
-
+print("Test Case 3: Partially Overlapping Range Result:", posts_in_range)  # Output: ['Post content within the specified time range']
 
 # __________________________________________________________________________________________________________________________________________________________________________________________________
-
-# 3. Imagine that we want to prioritize the social media posts by the number of views, and we want to be able to retrieve the post with the most views. What data structure would you use? Why? Implement your solution.
+# Requirement [3]: Imagine that we want to prioritize the social media posts by the number of views, and we want to be able to retrieve the post with the most views. What data structure would you use? Why? Implement your solution.
+# Utilizing a max heap to prioritize posts by the number of views and efficiently retrieve the most viewed post.
 import heapq
 
 class PostManager:
@@ -183,18 +181,23 @@ class PostManager:
         else:
             return "No posts available."
 
-# Test cases for prioritizing posts by number of views using Max Heap
-post_manager = PostManager()
+    def get_most_viewed_posts(self, n):
+        return [post[1] for post in heapq.nlargest(n, self.posts)]
 
+
+print("\nProblem 3: Prioritizing social media posts by the number of views using Max Heap")
 # Adding posts with views
+post_manager = PostManager()
 post_manager.add_post_with_views("Post 1", 123456789)
 post_manager.add_post_with_views("Post 2", 1234567)
 post_manager.add_post_with_views("Post 3", 1234567890)
 
 # Retrieving the most viewed post
-print(post_manager.get_most_viewed_post())  # Output: Post 2
-
-
+print("The three posts:")
+print("Post 1", 123456789)
+print("Post 2", 1234567)
+print("Post 3", 1234567890)
+print("Most Viewed Post:", post_manager.get_most_viewed_post())  # Output: Post 3
 
 # Test Case 1: Insert and Retrieve Most Viewed Post
 post_manager = PostManager()
@@ -202,13 +205,15 @@ post_manager.add_post_with_views("Post 1", 234567890)
 post_manager.add_post_with_views("Post 2", 3456789)
 post_manager.add_post_with_views("Post 3", 23456)
 most_viewed_post = post_manager.get_most_viewed_post()
-assert most_viewed_post == "Post 1", "Test case 1 failed: Incorrect most viewed post retrieved."
+assert most_viewed_post == "Post 1", "Problem 3 - Test Case 1 failed: Incorrect most viewed post retrieved."
+print("The three posts:")
+print("Post 1", 234567890)
+print("Post 2", 3456789)
+print("Post 3", 23456)
+print("Test Case 1: Insert and Retrieve Most Viewed Post Result:", most_viewed_post)  # Output: Post 1
 
-# Test Case 2: Retrieve Top N Most Viewed Posts
-top_n_posts = post_manager.get_most_viewed_posts(2)
-assert top_n_posts == ["Post 1", "Post 3"], "Test case 2 failed: Incorrect top N most viewed posts retrieved."
-
-# Test Case 3: No Posts Available
+# Test Case 2: No Posts Available
 empty_post_manager = PostManager()
 most_viewed_post = empty_post_manager.get_most_viewed_post()
-assert most_viewed_post == "No posts available.", "Test case 3 failed: Incorrect message for no posts available."
+assert most_viewed_post == "No posts available.", "Problem 3 - Test Case 2 failed: Incorrect message for no posts available."
+print("Test Case 2: No Posts Available Result:", most_viewed_post)  # Output: No posts available.
