@@ -55,9 +55,18 @@ for key in hash_table.table:
             retrieved_posts.append(value)
 assert post1 in retrieved_posts and post2 in retrieved_posts, "Test case 2 failed: Not all posts are retrieved."
 
-
-
-
+# Test Case 3: Non-existent Datetime
+hash_table = HashTable()
+date = "2024-04-21"
+time = "12:00:00"
+non_existent_date = "2024-04-22"
+non_existent_time = "12:00:00"
+post = "Sample post content"
+datetime = date + " " + time
+hash_table.insert(datetime, post)
+non_existent_datetime = non_existent_date + " " + non_existent_time
+retrieved_post = hash_table.get(non_existent_datetime)
+assert retrieved_post is None, "Test case 3 failed: Retrieved post exists for non-existent datetime."
 
 # __________________________________________________________________________________________________________________________________________________________________________________________________
 
