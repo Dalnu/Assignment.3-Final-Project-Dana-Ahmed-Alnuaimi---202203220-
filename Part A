@@ -72,8 +72,6 @@ assert retrieved_post is None, "Test case 3 failed: Retrieved post exists for no
 
 
 
-
-
 # __________________________________________________________________________________________________________________________________________________________________________________________________
 
 # 2. If you need to find posts in a specific time range (e.g., start datetime, end datetime), what data structure would you use? Why? Implement your solution.
