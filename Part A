@@ -28,6 +28,8 @@ class HashTable:
                 return value
         return None
 
+
+
 # Test cases for finding a post by unique datetime value using Hash Table
 # Test Case 1: Insert and Retrieve
 hash_table = HashTable()
@@ -116,16 +118,23 @@ class BST:
         if end_datetime > node.datetime:
             self._find_posts_in_range_recursive(node.right, start_datetime, end_datetime, result)
 
+
+
 # Test cases for finding posts in a specific time range using Binary Search Tree
+# Test Case 1: Insert and Retrieve in Range
 bst = BST()
+# Assume posts are inserted with datetime values spanning a range from "2024-04-01" to "2024-04-30"
+# Define a time range from "2024-04-10 00:00:00" to "2024-04-20 23:59:59"
+start_date = "2024-04-10"
+end_date = "2024-04-20"
+start_time = "00:00:00"
+end_time = "23:59:59"
+start_datetime = start_date + " " + start_time
+end_datetime = end_date + " " + end_time
+posts_in_range = bst.find_posts_in_range(start_datetime, end_datetime)
+assert len(posts_in_range) > 0, "Test case 1 failed: No posts retrieved within the specified time range."
 
-# Inserting posts with datetime values
-bst.insert("2024-04-22 10:00:00", "Post 1")
-bst.insert("2024-04-22 12:30:00", "Post 2")
-bst.insert("2024-04-22 15:45:00", "Post 3")
 
-# Finding posts within a time range
-print(bst.find_posts_in_range("2024-04-22 11:00:00", "2024-04-22 14:00:00"))  # Output: ['Post 2']
 
 
 
