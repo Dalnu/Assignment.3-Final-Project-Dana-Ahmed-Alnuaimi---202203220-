@@ -29,17 +29,7 @@ class HashTable:
         return None
 
 # Test cases for finding a post by unique datetime value using Hash Table
-hash_table = HashTable()
 
-# Inserting posts with unique datetime values
-hash_table.insert("2024-04-22 10:00:00", "Post 1")
-hash_table.insert("2024-04-22 12:30:00", "Post 2")
-hash_table.insert("2024-04-22 15:45:00", "Post 3")
-
-# Retrieving posts by their datetime values
-print(hash_table.get("2024-04-22 10:00:00"))  # Output: Post 1
-print(hash_table.get("2024-04-22 12:30:00"))  # Output: Post 2
-print(hash_table.get("2024-04-22 15:45:00"))  # Output: Post 3
 
 
 
