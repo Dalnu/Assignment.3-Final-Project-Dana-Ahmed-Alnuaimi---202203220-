@@ -29,6 +29,16 @@ class HashTable:
         return None
 
 # Test cases for finding a post by unique datetime value using Hash Table
+# Test Case 1: Insert and Retrieve
+hash_table = HashTable()
+date = "2024-04-21"
+time = "12:00:00"
+post = "Sample post content"
+datetime = date + " " + time
+hash_table.insert(datetime, post)
+retrieved_post = hash_table.get(datetime)
+assert retrieved_post == post, "Test case 1 failed: Retrieved post does not match inserted post."
+
 
 
 
