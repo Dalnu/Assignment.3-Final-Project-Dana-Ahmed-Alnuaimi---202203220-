@@ -1,5 +1,4 @@
-# Final Project Part A - Hash Tables, Binary Search Trees, Heaps
-# Develop a system that processes and manages a stream of social media posts. Each post has a unique datetime value, the post, and the person who posted it.
+# Part A - Hash Tables, Binary Search Trees, Heaps
 
 # Requirement [1]: If you need to find a post by its unique datetime value, what data structure would you use? Implement your solution.
 # Utilizing a hash table to efficiently retrieve posts by their unique datetime values.
