@@ -39,6 +39,22 @@ hash_table.insert(datetime, post)
 retrieved_post = hash_table.get(datetime)
 assert retrieved_post == post, "Test case 1 failed: Retrieved post does not match inserted post."
 
+# Test Case 2: Collision Handling
+hash_table = HashTable()
+date = "2024-04-21"
+time = "12:00:00"
+post1 = "First post"
+post2 = "Second post"
+datetime = date + " " + time
+hash_table.insert(datetime, post1)
+hash_table.insert(datetime, post2)
+retrieved_posts = []
+for key in hash_table.table:
+    if key:
+        for _, value in key:
+            retrieved_posts.append(value)
+assert post1 in retrieved_posts and post2 in retrieved_posts, "Test case 2 failed: Not all posts are retrieved."
+
 
 
 
