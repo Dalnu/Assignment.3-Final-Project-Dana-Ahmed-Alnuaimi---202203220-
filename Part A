@@ -70,6 +70,10 @@ non_existent_datetime = non_existent_date + " " + non_existent_time
 retrieved_post = hash_table.get(non_existent_datetime)
 assert retrieved_post is None, "Test case 3 failed: Retrieved post exists for non-existent datetime."
 
+
+
+
+
 # __________________________________________________________________________________________________________________________________________________________________________________________________
 
 # 2. If you need to find posts in a specific time range (e.g., start datetime, end datetime), what data structure would you use? Why? Implement your solution.
@@ -134,7 +138,6 @@ end_datetime = end_date + " " + end_time
 posts_in_range = bst.find_posts_in_range(start_datetime, end_datetime)
 assert len(posts_in_range) > 0, "Test case 1 failed: No posts retrieved within the specified time range."
 
-
 # Test Case 2: No Posts in Range
 # Assumeing that the posts are inserted with datetime values outside the defined time range
 # A time range from "2024-04-25 00:00:00" to "2024-04-30 23:59:59"
@@ -146,6 +149,20 @@ start_datetime = start_date + " " + start_time
 end_datetime = end_date + " " + end_time
 posts_in_range = bst.find_posts_in_range(start_datetime, end_datetime)
 assert len(posts_in_range) == 0, "Test case 2 failed: Posts retrieved within the specified time range."
+
+# Test Case 3: Partially Overlapping Range
+# Assuming that the posts are inserted with datetime values partially overlapping with the defined time range
+# Define a time range from "2024-04-15 12:00:00" to "2024-04-25 12:00:00"
+start_date = "2024-04-15"
+end_date = "2024-04-25"
+start_time = "12:00:00"
+end_time = "12:00:00"
+start_datetime = start_date + " " + start_time
+end_datetime = end_date + " " + end_time
+posts_in_range = bst.find_posts_in_range(start_datetime, end_datetime)
+assert len(posts_in_range) > 0, "Test case 3 failed: No posts retrieved within the overlapping time range."
+
+
 
 
 
