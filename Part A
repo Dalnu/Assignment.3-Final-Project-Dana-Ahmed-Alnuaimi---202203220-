@@ -123,7 +123,7 @@ class BST:
 # Test cases for finding posts in a specific time range using Binary Search Tree
 # Test Case 1: Insert and Retrieve in Range
 bst = BST()
-# Assume posts are inserted with datetime values spanning a range from "2024-04-01" to "2024-04-30"
+# Assuming that the posts are inserted with datetime values spanning a range from "2024-04-01" to "2024-04-30"
 # Define a time range from "2024-04-10 00:00:00" to "2024-04-20 23:59:59"
 start_date = "2024-04-10"
 end_date = "2024-04-20"
@@ -135,6 +135,17 @@ posts_in_range = bst.find_posts_in_range(start_datetime, end_datetime)
 assert len(posts_in_range) > 0, "Test case 1 failed: No posts retrieved within the specified time range."
 
 
+# Test Case 2: No Posts in Range
+# Assumeing that the posts are inserted with datetime values outside the defined time range
+# A time range from "2024-04-25 00:00:00" to "2024-04-30 23:59:59"
+start_date = "2024-04-25"
+end_date = "2024-04-30"
+start_time = "00:00:00"
+end_time = "23:59:59"
+start_datetime = start_date + " " + start_time
+end_datetime = end_date + " " + end_time
+posts_in_range = bst.find_posts_in_range(start_datetime, end_datetime)
+assert len(posts_in_range) == 0, "Test case 2 failed: Posts retrieved within the specified time range."
 
 
 
